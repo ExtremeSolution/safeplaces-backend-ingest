@@ -45,7 +45,9 @@ jobs:
         service_account_key: ${{ secrets.GCP_SA_KEY }}
         project_id: covid-safeplaces
         export_default_credentials: true
-
+        
+    # Build and push image to Google Container Registry
+    - name: Build - Publish
       run: |-
         gcloud builds submit \
           --quiet \
