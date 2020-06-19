@@ -43,9 +43,13 @@ jobs:
       with:
         version: '290.0.1'
         service_account_key: ${{ secrets.GCP_SA_KEY }}
-        project_id: 'covid-safeplaces'
+        project_id: covid-safeplaces
         export_default_credentials: true
 
+    # Set Active Project
+    - name: Activate GCP Project
+      run: |-
+        gcloud config set project covid-safeplaces
     # Build and push image to Google Container Registry
     - name: Build - Publish
       run: |-
