@@ -46,6 +46,10 @@ jobs:
         project_id: ${{ secrets.GCP_PROJECT_ID }}
         export_default_credentials: true
 
+    # Set Active Project
+    - name: Activate GCP Project
+      run: |-
+        gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
     # Build and push image to Google Container Registry
     - name: Build - Publish
       run: |-
