@@ -23,6 +23,7 @@ on:
 env:
   GITHUB_SHA: ${{ github.sha }}
   SERVICE_NAME: ${{ secrets.SERVICE_NAME }}
+  PROJECT_ID: covid-safeplaces
 
 
 jobs:
@@ -43,13 +44,13 @@ jobs:
       with:
         version: '290.0.1'
         service_account_key: ${{ secrets.GCP_SA_KEY }}
-        project_id: covid-safeplaces
+        project_id: $PROJECT_ID
         export_default_credentials: true
 
     # Set Active Project
     - name: Activate GCP Project
       run: |-
-        gcloud config set project covid-safeplaces
+        gcloud config set project $PROJECT_ID
     # Build and push image to Google Container Registry
     - name: Build - Publish
       run: |-
